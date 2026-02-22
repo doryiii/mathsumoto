@@ -1,0 +1,22 @@
+// =========================== commands =============================
+
+?cmd: ("tell"|"show") NICK MSG  -> tell
+    | TIME cmd                  -> timedcmd
+    | timedmsg
+
+timedmsg: TIME "," MSG
+        | "remind me" TIME " to " MSG
+        | "remind me to " MSG TIME
+
+NICK: /[^ ]+/
+MSG: /.+/
+TIME: /in .+|tomorrow|next .*/
+
+// ==================================================================
+
+%import common.ESCAPED_STRING
+%import common.WORD
+%import common.NUMBER
+%import common.WS
+%ignore WS
+
