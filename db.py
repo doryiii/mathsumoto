@@ -25,6 +25,44 @@ def init_db():
             PRIMARY KEY (channel_id, guild_id, user_id)
         )
     """)
+  cursor.execute("""
+        CREATE TABLE IF NOT EXISTS reminders (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            channel_id TEXT,
+            target_user TEXT,
+            message TEXT,
+            trigger_time REAL
+        )
+    """)
+  conn.commit()
+  conn.close()
+
+
+def add_reminder(channel_id, target_user, message, trigger_time):
+  conn = sqlite3.connect(DB_FILE)
+  cursor = conn.cursor()
+  cursor.execute(
+      "INSERT INTO reminders (channel_id, target_user, message, trigger_time) VALUES (?, ?, ?, ?)",
+      (str(channel_id), str(target_user), str(message), float(trigger_time))
+  )
+  conn.commit()
+  conn.close()
+
+
+def get_due_reminders(current_time):
+  conn = sqlite3.connect(DB_FILE)
+  cursor = conn.cursor()
+  cursor.execute(
+    "SELECT id, channel_id, target_user, message FROM reminders WHERE trigger_time <= ?", (float(current_time),))
+  rows = cursor.fetchall()
+  conn.close()
+  return rows
+
+
+def remove_reminder(reminder_id):
+  conn = sqlite3.connect(DB_FILE)
+  cursor = conn.cursor()
+  cursor.execute("DELETE FROM reminders WHERE id = ?", (int(reminder_id),))
   conn.commit()
   conn.close()
 

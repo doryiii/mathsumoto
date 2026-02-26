@@ -27,6 +27,7 @@ async def setup_hook():
   await bot.load_extension("info")
   await bot.load_extension("chat")
   await bot.load_extension("transcription")
+  await bot.load_extension("reminders")
 
 bot.setup_hook = setup_hook
 
