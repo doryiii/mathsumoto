@@ -39,6 +39,9 @@ Interact with other users using dynamic, sometimes AI-generated, flavor text!
 ### Utility
 *   **`.avatar [@user]`**: Fetches and displays the full-resolution avatar of the mentioned user(s) or yourself.
 
+### Time-Based Reminders
+*   **`.remind <@user|me> in <time> to <action>`**: Sets a reminder. The bot uses fuzzy natural language parsing for the time (e.g., `in 5 days`, `in 2 hours`, `tomorrow at 5pm`). When the time is up, the bot will ping the target user with the reminder message. Active reminders are saved to the database and will persist across bot restarts.
+
 ### Intelligent Chat (Gemini)
 *   **Persona-Driven Conversations:** The bot responds to mentions and adopts different personas (e.g., standard Rise, Shy Smart Rise, or Aoi) depending on the specific server and channel it is interacting in.
 *   **Multimodal Support:** You can attach images to your messages, and the bot will process them inline using the Gemini Vision capabilities.
