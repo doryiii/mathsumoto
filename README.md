@@ -10,6 +10,9 @@ Mathsumoto is a feature-rich, modular Discord bot written in Python using `disco
 ### Live Voice Transcription
 *   **`.transcribe`**: The bot joins your current voice channel and listens. It uses an OpenAI-compatible Whisper API endpoint to transcribe spoken audio into text in real-time and posts it to the text channel.
 *   **`.stoptranscribe`** (Aliases: `.bye`, `.byee`, `.stop`): Disconnects the bot from the voice channel and stops listening.
+*   **`.ignoreme`**: Adds you to the ignore list for the current channel, preventing the bot from transcribing your voice.
+*   **`.unignoreme`**: Removes you from the ignore list for the current channel.
+*   **`.ignoredusers`**: Lists all users currently being ignored in the current channel.
 
 ### Image & Comic Fetching
 *   **`.xkcd <query>`**: Searches for and retrieves XKCD comics (requires a local search service).
@@ -66,9 +69,14 @@ Mathsumoto uses `argparse` to handle secrets via command-line arguments rather t
 Run `mathsumoto.py` and provide the required API keys and URLs:
 
 ```bash
-python3 mathsumoto.py 
-    --discord-token "YOUR_DISCORD_BOT_TOKEN" 
-    --gemini-api-key "YOUR_GEMINI_API_KEY" 
-    --whisper-base-url "http://localhost:8000/v1/" 
+python3 mathsumoto.py \
+    --discord-token "YOUR_DISCORD_BOT_TOKEN" \
+    --gemini-api-key "YOUR_GEMINI_API_KEY" \
+    --openai-base-url "http://localhost:8090/v1/" \
+    --whisper-base-url "http://localhost:8000/v1/" \
+    --openai-api-key "YOUR_OPTIONAL_OPENAI_KEY" \
+    --whisper-api-key "YOUR_OPTIONAL_WHISPER_KEY"
 ```
+
+*Note: `--openai-api-key` and `--whisper-api-key` are optional and default to `"NOT_USED"` if omitted, which is useful when connecting to local, unauthenticated OpenAI-compatible endpoints.*
 
