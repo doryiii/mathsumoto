@@ -34,6 +34,8 @@ class TranscriptionCog(commands.Cog):
     def process_callback(recognizer, audio, user):
       if not audio.frame_data:
         return None
+      if getattr(user, 'bot', False):
+        return None
       if user.id in self.ignored_users.get((ctx.channel.id, guild_id), set()):
         return None
       try:
