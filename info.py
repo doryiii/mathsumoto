@@ -10,7 +10,6 @@ class InfoCog(commands.Cog):
   @commands.command()
   async def avatar(self, ctx, *args):
     avatars = {}
-    # import code; code.interact(local=locals())
 
     if len(args) == 0:
       avatars[str(ctx.message.author)] = ctx.message.author.display_avatar.url
@@ -32,9 +31,6 @@ class InfoCog(commands.Cog):
     if not avatars:
       return
 
-    # imgs = [discord.File(io.BytesIO(await urlopen(avatar).read()),
-    #                     os.path.basename(urlparse(str(avatar)).path))
-    #        for avatar in avatars[:10]]
     for user in avatars:
       em = discord.Embed(title=str(user))
       em.set_image(url=avatars[user])
