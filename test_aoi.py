@@ -33,7 +33,7 @@ class TestAoiCog(unittest.IsolatedAsyncioTestCase):
         mock_file = MagicMock()
         mock_scribus.return_value = mock_file
         
-        await self.cog.aoiyell(self.cog, self.ctx, "hello", "world")
+        await self.cog.aoiyell(self.cog, self.ctx, message="hello world")
         
         mock_scribus.assert_called_once_with("aoiyell", "hello world", "aoi.png")
         self.ctx.send.assert_called_once_with("", files=[mock_file])
