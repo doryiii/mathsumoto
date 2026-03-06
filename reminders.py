@@ -6,6 +6,9 @@ import dateparser
 import db
 
 
+RISEPOG = "<:RisePog:1026556086280532119>"
+
+
 class RemindersCog(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
@@ -60,7 +63,7 @@ class RemindersCog(commands.Cog):
       channel = self.bot.get_channel(int(channel_id))
       if channel:
         try:
-          await channel.send(f"⏰ {target_user}, {message}")
+          await channel.send(f"{RISEPOG} {target_user}, {message}")
         except Exception as e:
           print(f"Failed to send reminder {rem_id}: {e}")
       db.remove_reminder(rem_id)
