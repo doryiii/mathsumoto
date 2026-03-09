@@ -1,4 +1,4 @@
-from transcription import TranscriptionCog
+from transcription import Transcription
 import unittest
 from unittest.mock import AsyncMock, patch, MagicMock
 import discord
@@ -10,7 +10,7 @@ sys.modules['discord.ext.voice_recv.extras'] = MagicMock()
 sys.modules['discord.ext.voice_recv.extras.speechrecognition'] = MagicMock()
 
 
-class TestTranscriptionCog(unittest.IsolatedAsyncioTestCase):
+class TestTranscription(unittest.IsolatedAsyncioTestCase):
   def setUp(self):
     self.bot = AsyncMock()
     self.bot.WHISPER_KEY = "dummy_key"
@@ -18,7 +18,7 @@ class TestTranscriptionCog(unittest.IsolatedAsyncioTestCase):
 
     with patch('transcription.openai.OpenAI'):
       with patch('transcription.OpenAICompatibleRecognizer'):
-        self.cog = TranscriptionCog(self.bot)
+        self.cog = Transcription(self.bot)
 
     self.ctx = AsyncMock()
     self.ctx.send = AsyncMock()

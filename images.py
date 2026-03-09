@@ -4,7 +4,7 @@ import httpx
 import nekos
 
 
-class ImagesCog(commands.Cog):
+class Images(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
@@ -58,4 +58,4 @@ class ImagesCog(commands.Cog):
 
 
 async def setup(bot):
-  await bot.add_cog(ImagesCog(bot))
+  await bot.add_cog(Images(bot))

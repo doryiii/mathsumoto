@@ -2,9 +2,9 @@ import unittest
 from unittest.mock import AsyncMock, patch, MagicMock
 from contextlib import asynccontextmanager
 import discord
-from chat import ChatCog, DEFAULT_CTX
+from chat import Chat, DEFAULT_CTX
 
-class TestChatCog(unittest.IsolatedAsyncioTestCase):
+class TestChat(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         self.bot = AsyncMock()
         self.bot.MODEL_MAIN = "test-model"
@@ -12,7 +12,7 @@ class TestChatCog(unittest.IsolatedAsyncioTestCase):
         self.bot.user.name = "TestBot"
         self.bot.user.bot = True # the bot itself
         
-        self.cog = ChatCog(self.bot)
+        self.cog = Chat(self.bot)
         
         self.ctx = AsyncMock()
         self.ctx.reply = AsyncMock()

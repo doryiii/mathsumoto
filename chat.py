@@ -78,7 +78,7 @@ AOI_SERVER = 1034299634853625946
 DISCORD_MAXLEN = 2000
 
 
-class ChatCog(commands.Cog):
+class Chat(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
@@ -217,4 +217,4 @@ class ChatCog(commands.Cog):
 
 async def setup(bot):
   db.init_db()
-  await bot.add_cog(ChatCog(bot))
+  await bot.add_cog(Chat(bot))

@@ -152,7 +152,7 @@ async def get_wolfram(message, app_id):
 
     return (None, None)
 
-class WolframCog(commands.Cog):
+class Wolfram(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -174,5 +174,5 @@ class WolframCog(commands.Cog):
             await ctx.reply(ans)
 
 async def setup(bot):
-    await bot.add_cog(WolframCog(bot))
+    await bot.add_cog(Wolfram(bot))
 

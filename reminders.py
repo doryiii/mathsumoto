@@ -9,7 +9,7 @@ import db
 RISEPOG = "<:RisePog:1026556086280532119>"
 
 
-class RemindersCog(commands.Cog):
+class Reminders(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
     self.check_reminders.start()
@@ -74,4 +74,4 @@ class RemindersCog(commands.Cog):
 
 
 async def setup(bot):
-  await bot.add_cog(RemindersCog(bot))
+  await bot.add_cog(Reminders(bot))

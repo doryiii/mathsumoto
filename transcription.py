@@ -7,7 +7,7 @@ import openai
 import db
 
 
-class TranscriptionCog(commands.Cog):
+class Transcription(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
     self.ignored_users = {}
@@ -112,4 +112,4 @@ class TranscriptionCog(commands.Cog):
 
 
 async def setup(bot):
-  await bot.add_cog(TranscriptionCog(bot))
+  await bot.add_cog(Transcription(bot))

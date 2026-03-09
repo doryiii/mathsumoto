@@ -1,13 +1,13 @@
 import unittest
 from unittest.mock import AsyncMock, patch, MagicMock, mock_open
 import discord
-from actions import ActionsCog
+from actions import Actions
 
-class TestActionsCog(unittest.IsolatedAsyncioTestCase):
+class TestActions(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         self.bot = AsyncMock()
         self.bot.user.name = "TestBot"
-        self.cog = ActionsCog(self.bot)
+        self.cog = Actions(self.bot)
         self.ctx = AsyncMock()
         self.ctx.send = AsyncMock()
         self.ctx.reply = AsyncMock()
@@ -39,7 +39,7 @@ class TestActionsCog(unittest.IsolatedAsyncioTestCase):
 
     @patch('actions.random.choice')
     @patch('builtins.open', new_callable=mock_open, read_data="{orig} hugged {dest}\\n")
-    @patch.object(ActionsCog, 'bot_send')
+    @patch.object(Actions, 'bot_send')
     async def test_hug_no_args(self, mock_bot_send, mock_file, mock_choice):
         mock_choice.side_effect = [False, "{orig} hugged {dest}"] # False for use_ai
         
@@ -49,12 +49,12 @@ class TestActionsCog(unittest.IsolatedAsyncioTestCase):
 
     @patch('actions.random.choice')
     @patch('builtins.open', new_callable=mock_open, read_data="{orig} kissed {dest}\\n")
-    @patch.object(ActionsCog, 'bot_send')
+    @patch.object(Actions, 'bot_send')
     async def test_kiss_one_arg(self, mock_bot_send, mock_file, mock_choice):
         mock_choice.return_value = "{orig} kissed {dest}"
         
         # Mock get_user_from_mention so it just returns what we pass it
-        with patch.object(ActionsCog, 'get_user_from_mention', return_value="UserB"):
+        with patch.object(Actions, 'get_user_from_mention', return_value="UserB"):
             await self.cog.kiss(self.cog, self.ctx, "UserB")
             
         mock_bot_send.assert_called_once_with(self.ctx, "**UserA** kissed **UserB**")

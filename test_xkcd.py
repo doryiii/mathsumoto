@@ -1,14 +1,14 @@
 import unittest
 from unittest.mock import AsyncMock, patch, MagicMock
 import discord
-from xkcd import XkcdCog
+from xkcd import Xkcd
 
 from contextlib import asynccontextmanager
 
-class TestXkcdCog(unittest.IsolatedAsyncioTestCase):
+class TestXkcd(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         self.bot = AsyncMock()
-        self.cog = XkcdCog(self.bot)
+        self.cog = Xkcd(self.bot)
         self.ctx = AsyncMock()
         self.ctx.reply = AsyncMock()
         

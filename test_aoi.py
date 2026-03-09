@@ -1,12 +1,12 @@
 import unittest
 from unittest.mock import AsyncMock, patch, MagicMock
 import discord
-from aoi import AoiCog
+from aoi import Aoi
 
-class TestAoiCog(unittest.IsolatedAsyncioTestCase):
+class TestAoi(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         self.bot = AsyncMock()
-        self.cog = AoiCog(self.bot)
+        self.cog = Aoi(self.bot)
         self.ctx = AsyncMock()
         self.ctx.send = AsyncMock()
 
@@ -28,7 +28,7 @@ class TestAoiCog(unittest.IsolatedAsyncioTestCase):
         
         self.ctx.send.assert_called_once_with("", files=[mock_file_instance])
 
-    @patch.object(AoiCog, 'scribus')
+    @patch.object(Aoi, 'scribus')
     async def test_aoiyell(self, mock_scribus):
         mock_file = MagicMock()
         mock_scribus.return_value = mock_file
@@ -38,7 +38,7 @@ class TestAoiCog(unittest.IsolatedAsyncioTestCase):
         mock_scribus.assert_called_once_with("aoiyell", "hello world", "aoi.png")
         self.ctx.send.assert_called_once_with("", files=[mock_file])
 
-    @patch.object(AoiCog, 'scribus')
+    @patch.object(Aoi, 'scribus')
     async def test_aoisay_default(self, mock_scribus):
         mock_file = MagicMock()
         mock_scribus.return_value = mock_file

@@ -14,7 +14,7 @@ BONKERS = [
 ]
 
 
-class ActionsCog(commands.Cog):
+class Actions(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
@@ -232,4 +232,4 @@ class ActionsCog(commands.Cog):
 
 
 async def setup(bot):
-  await bot.add_cog(ActionsCog(bot))
+  await bot.add_cog(Actions(bot))

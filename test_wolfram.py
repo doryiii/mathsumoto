@@ -2,12 +2,12 @@ import unittest
 from unittest.mock import AsyncMock, patch, MagicMock
 from contextlib import asynccontextmanager
 import discord
-from wolfram import WolframCog, format_res
+from wolfram import Wolfram, format_res
 
 class TestWolfram(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         self.bot = AsyncMock()
-        self.cog = WolframCog(self.bot)
+        self.cog = Wolfram(self.bot)
         self.ctx = AsyncMock()
         self.ctx.reply = AsyncMock()
         

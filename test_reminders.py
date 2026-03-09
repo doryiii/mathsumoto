@@ -2,10 +2,10 @@ import unittest
 from unittest.mock import AsyncMock, patch, MagicMock
 import time
 import discord
-from reminders import RemindersCog
+from reminders import Reminders, RISEPOG
 
 
-class TestRemindersCog(unittest.IsolatedAsyncioTestCase):
+class TestReminders(unittest.IsolatedAsyncioTestCase):
   async def asyncSetUp(self):
     self.bot = AsyncMock()
     self.bot.get_channel = MagicMock()
@@ -13,7 +13,7 @@ class TestRemindersCog(unittest.IsolatedAsyncioTestCase):
     # Mock loop start/cancel methods so we don't actually run a background task in tests
     with patch('discord.ext.tasks.Loop.start'):
       with patch('discord.ext.tasks.Loop.cancel'):
-        self.cog = RemindersCog(self.bot)
+        self.cog = Reminders(self.bot)
 
     self.ctx = AsyncMock()
     self.ctx.send = AsyncMock()
@@ -76,7 +76,7 @@ class TestRemindersCog(unittest.IsolatedAsyncioTestCase):
 
     self.bot.get_channel.assert_called_once_with(123)
     mock_channel.send.assert_called_once_with(
-      "⏰ <@456>, do the dishes")
+      f"{RISEPOG} <@456>, do the dishes")
     mock_db.remove_reminder.assert_called_once_with(1)
 
 

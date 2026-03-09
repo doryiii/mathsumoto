@@ -1,12 +1,12 @@
 import unittest
 from unittest.mock import AsyncMock, MagicMock, patch
 import discord
-from info import InfoCog
+from info import Info
 
-class TestInfoCog(unittest.IsolatedAsyncioTestCase):
+class TestInfo(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         self.bot = AsyncMock()
-        self.cog = InfoCog(self.bot)
+        self.cog = Info(self.bot)
         
         self.ctx = AsyncMock()
         self.ctx.message = MagicMock()

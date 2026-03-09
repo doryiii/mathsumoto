@@ -1,12 +1,12 @@
 import unittest
 from unittest.mock import AsyncMock, patch, MagicMock
 import discord
-from images import ImagesCog
+from images import Images
 
-class TestImagesCog(unittest.IsolatedAsyncioTestCase):
+class TestImages(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         self.bot = AsyncMock()
-        self.cog = ImagesCog(self.bot)
+        self.cog = Images(self.bot)
         self.ctx = AsyncMock()
         self.ctx.send = AsyncMock()
 

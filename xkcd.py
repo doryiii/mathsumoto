@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 
 
-class XkcdCog(commands.Cog):
+class Xkcd(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
@@ -31,4 +31,4 @@ class XkcdCog(commands.Cog):
 
 
 async def setup(bot):
-  await bot.add_cog(XkcdCog(bot))
+  await bot.add_cog(Xkcd(bot))

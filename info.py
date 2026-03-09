@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 
 
-class InfoCog(commands.Cog):
+class Info(commands.Cog):
   def __init__(self, bot):
     self.bot = bot
 
@@ -38,4 +38,4 @@ class InfoCog(commands.Cog):
 
 
 async def setup(bot):
-  await bot.add_cog(InfoCog(bot))
+  await bot.add_cog(Info(bot))
